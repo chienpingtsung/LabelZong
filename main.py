@@ -35,14 +35,14 @@ class LabelZong(tkinter.Tk):
         # South frame
         self.frame_s = tkinter.Frame(self)
         self.frame_s.pack()
-        self.prev_butt = tkinter.Button(self.frame_s, text='Prev')
-        self.prev_butt.grid(column=0, row=0)
-        self.next_butt = tkinter.Button(self.frame_s, text='Next')
-        self.next_butt.grid(column=1, row=0)
-        self.clean_butt = tkinter.Button(self.frame_s, text='Clean')
-        self.clean_butt.grid(column=2, row=0)
-        self.reset_butt = tkinter.Button(self.frame_s, text='Reset')
-        self.reset_butt.grid(column=3, row=0)
+        self.prev_butt = tkinter.Button(self.frame_s, text='Prev', width=20)
+        self.prev_butt.grid(column=0, row=0, padx=20, pady=20)
+        self.next_butt = tkinter.Button(self.frame_s, text='Next', width=20)
+        self.next_butt.grid(column=1, row=0, padx=20, pady=20)
+        self.clean_butt = tkinter.Button(self.frame_s, text='Clean', width=20)
+        self.clean_butt.grid(column=2, row=0, padx=20, pady=20)
+        self.reset_butt = tkinter.Button(self.frame_s, text='Reset', width=20)
+        self.reset_butt.grid(column=3, row=0, padx=20, pady=20)
 
         # Zoomed window
         self.state('zoomed')
@@ -58,6 +58,7 @@ class LabelZong(tkinter.Tk):
         self.load()
 
         # Events binding
+        self.bind('<Key>', self.key_event)
         self.frame_n.bind('<Configure>', self.on_window_change)
         self.canvas.bind('<Motion>', self.canvas_motion)
         self.canvas.bind('<B1-Motion>', self.canvas_motion)
@@ -67,6 +68,20 @@ class LabelZong(tkinter.Tk):
         self.next_butt.configure(command=self.next_event)
         self.clean_butt.configure(command=self.clean_event)
         self.reset_butt.configure(command=self.reset_event)
+
+    def key_event(self, event):
+        if event.keysym == 'a':
+            self.prev_event()
+            return
+        if event.keysym == 'd':
+            self.next_event()
+            return
+        if event.keysym == 'c':
+            self.clean_event()
+            return
+        if event.keysym == 'r':
+            self.reset_event()
+            return
 
     def reset_event(self):
         self.load()
