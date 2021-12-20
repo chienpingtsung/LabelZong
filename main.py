@@ -90,7 +90,7 @@ class LabelZong(tkinter.Tk):
         self.load()
 
     def load(self):
-        self.title(f'LabelZong ({self.index + 1}/{len(self.stems)})')
+        self.title(f'LabelZong ({self.index + 1}/{len(self.stems)}) {self.stems[self.index]}')
         self.image, self.mask, self.dye, self.brush_mask, self.brush_dye = self.prepare_image_mask_dye()
         self.on_window_change()
         self.photo_image = self.prepare_photo_image(self.brush_mask)
