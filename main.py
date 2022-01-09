@@ -13,8 +13,8 @@ class LabelZong(tkinter.Tk):
         args = self.parse_args()
         self.trans = args.transparency
         self.brush = args.brush
-        self.dataset_image = Path(args.dataset).joinpath('images/')
-        self.dataset_mask = Path(args.dataset).joinpath('masks/')
+        self.dataset_image = Path(args.dataset).joinpath('image/')
+        self.dataset_mask = Path(args.dataset).joinpath('mask/')
 
         self.stems = self.prepare_dataset()
         self.index = 0
@@ -62,6 +62,7 @@ class LabelZong(tkinter.Tk):
         self.frame_n.bind('<Configure>', self.on_window_change)
         self.canvas.bind('<Motion>', self.canvas_motion)
         self.canvas.bind('<B1-Motion>', self.canvas_motion)
+        self.canvas.bind('<B3-Motion>', self.canvas_motion)
         self.canvas.bind('<MouseWheel>', self.canvas_wheel)
         self.scale.configure(command=self.scale_change)
         self.prev_butt.configure(command=self.prev_event)
