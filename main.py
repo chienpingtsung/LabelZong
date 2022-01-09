@@ -128,6 +128,8 @@ class LabelZong(tkinter.Tk):
         x, y = event.x / self.zoom, event.y / self.zoom
         if event.state & 256:
             self.draw_mask(self.mask, x, y, fill=0, outline=0)
+        if event.state & 1024:
+            self.draw_mask(self.mask, x, y, fill=255, outline=255)
         brush_mask = self.brush_mask.copy()
         self.draw_mask(brush_mask, x, y, fill=0, outline=255)
         self.photo_image = self.prepare_photo_image(brush_mask)
